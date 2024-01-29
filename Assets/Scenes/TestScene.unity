@@ -259,10 +259,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90b0d62a4e998f40a1804e30f7e7bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Orientation>k__BackingField: 0
-  <Width>k__BackingField: 0
-  <Height>k__BackingField: 0
-  <HexSize>k__BackingField: 0
+  <Orientation>k__BackingField: 1
+  <Width>k__BackingField: 10
+  <Height>k__BackingField: 10
+  <HexSize>k__BackingField: 2.05
+  <HexPrefab>k__BackingField: {fileID: 0}
 --- !u!1 &1487086754
 GameObject:
   m_ObjectHideFlags: 0
