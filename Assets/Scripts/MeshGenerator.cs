@@ -59,9 +59,9 @@ public class MeshGenerator : MonoBehaviour
                 for (int s = 0; s < HexMetrics.Corners(hexSize, orientation).Length; s++)
                 {
                     int cornerIndex = s + 2 > 6 ? s + 2 - 6 : s + 2;
-                    triangles[3 * 6 * (z * width + x) + s * 3 + 0] = (z * width + x) * 7;
+                    triangles[3 * 6 * (z * width + x) + s * 3 + 2] = (z * width + x) * 7;
                     triangles[3 * 6 * (z * width + x) + s * 3 + 1] = (z * width + x) * 7 + s + 1;
-                    triangles[3 * 6 * (z * width + x) + s * 3 + 2] = (z * width + x) * 7 + cornerIndex;
+                    triangles[3 * 6 * (z * width + x) + s * 3 + 0] = (z * width + x) * 7 + cornerIndex;
                 }
             }
         }
