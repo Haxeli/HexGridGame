@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class MeshGeneratorEditor : MonoBehaviour
+[CustomEditor(typeof(MeshGenerator))]
+public class MeshGeneratorEditor : Editor
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnInspectorGUI()
     {
-        
-    }
+        DrawDefaultInspector();
+        MeshGenerator meshGenerator = (MeshGenerator)target;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (GUILayout.Button("Generate Hex Mesh"))
+        {
+            meshGenerator.CreateHexMesh();
+        }
+
+        if (GUILayout.Button("Clear Hex Mesh"))
+        {
+            meshGenerator.ClearHexGridMesh();
+        }
     }
 }
