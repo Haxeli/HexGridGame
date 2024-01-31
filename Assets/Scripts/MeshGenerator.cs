@@ -14,6 +14,18 @@ public class MeshGenerator : MonoBehaviour
         if (hexGrid == null) Debug.LogError("MeshGenerator didn't find HexGrid component");
     }
 
+    private void OnEnable()
+    {
+        MouseController.instance.OnLeftMouseClick += OnLeftMouseClick;
+        MouseController.instance.OnRightMouseClick += OnRightMouseClick;
+    }
+
+    private void OnDisable()
+    {
+        MouseController.instance.OnLeftMouseClick -= OnLeftMouseClick;
+        MouseController.instance.OnRightMouseClick -= OnRightMouseClick;
+    }
+
     public void ClearHexGridMesh()
     {
         if (GetComponent<MeshFilter>().sharedMesh == null) return;
