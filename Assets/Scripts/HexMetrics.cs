@@ -96,6 +96,11 @@ public class HexMetrics : MonoBehaviour
         return CubeToOffset(AxialToCube(CoordinateToAxial(x, z, hexSize, orientation)), orientation);
     }
 
+    public static Vector3 OffsetToCube(Vector2 offsetCoord, HexOrientation orientation)
+    {
+        return OffsetToCube((int)offsetCoord.x, (int)offsetCoord.y, orientation);
+    }
+
     public static Vector3 OffsetToCube(int col, int row, HexOrientation orientation)
     {
         if (orientation == HexOrientation.PointyTop)
