@@ -110,4 +110,14 @@ public class MeshGenerator : MonoBehaviour
         }
         return 0;
     }
+
+    private void OnLeftMouseClick(RaycastHit hit)
+    {
+
+    }
+
+    private void OnRightMouseClick(RaycastHit hit)
+    {
+
+    }
 }
