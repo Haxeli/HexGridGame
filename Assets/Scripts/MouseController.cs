@@ -1,18 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseController : MonoBehaviour
+public class MouseController : Singleton<MouseController>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Action<RaycastHit> OnLeftMouseClick;
+    public Action<RaycastHit> OnRightMouseClick;
+    public Action<RaycastHit> OnMiddleMouseClick;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
