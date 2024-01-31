@@ -62,6 +62,11 @@ public class HexMetrics : MonoBehaviour
         return centerPosition;
     }
 
+    public static Vector2 CoordinateToOffset(float x, float z, float hexSize, HexOrientation orientation)
+    {
+        return CubeToOffset(AxialToCube(CoordinateToAxial(x, z, hexSize, orientation)), orientation);
+    }
+
     public static Vector3 OffsetToCube(int col, int row, HexOrientation orientation)
     {
         if (orientation == HexOrientation.PointyTop)
