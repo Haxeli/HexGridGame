@@ -121,6 +121,12 @@ public class MeshGenerator : MonoBehaviour
 
     private void OnRightMouseClick(RaycastHit hit)
     {
+        float localX = hit.point.x - hit.transform.position.x;
+        float localZ = hit.point.z - hit.transform.position.z;
 
+        Vector2 location = HexMetrics.CoordinateToOffset(localX, localZ, hexGrid.HexSize, hexGrid.Orientation);
+        Vector3 center = HexMetrics.Center(hexGrid.HexSize, (int)location.x, (int)location.y, hexGrid.Orientation);
+        Debug.Log("Right clicked on hex: " + location);
+        //Instantiate
     }
 }
