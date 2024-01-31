@@ -113,7 +113,10 @@ public class MeshGenerator : MonoBehaviour
 
     private void OnLeftMouseClick(RaycastHit hit)
     {
-
+        Debug.Log("Hit object: " + hit.transform.name + " at position " + hit.point);
+        float localX = hit.point.x - hit.transform.position.x;
+        float localZ = hit.point.z - hit.transform.position.z;
+        Debug.Log("Offset position: " + HexMetrics.CoordinateToOffset(localX, localZ, hexGrid.HexSize, hexGrid.Orientation));
     }
 
     private void OnRightMouseClick(RaycastHit hit)
