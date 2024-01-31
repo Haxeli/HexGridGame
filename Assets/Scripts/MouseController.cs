@@ -25,5 +25,16 @@ public class MouseController : Singleton<MouseController>
         }
     }
 
-    
+    void CheckMouseClick(int mouseButton)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            if (mouseButton == 0) OnLeftMouseClick?.Invoke(hit);
+            else if (mouseButton == 1) OnRightMouseClick?.Invoke(hit);
+            else if (mouseButton == 2) OnMiddleMouseClick?.Invoke(hit);
+        }
+    }
 }
