@@ -62,6 +62,35 @@ public class HexMetrics : MonoBehaviour
         return centerPosition;
     }
 
+    public static Vector2 CubeToOffset(int x, int y, int z, HexOrientation orientation)
+    {
+        if (orientation == HexOrientation.PointyTop)
+        {
+            return CubeToOffsetPointy(x, y, z);
+        }
+        else
+        {
+            return CubeToOffsetFlat(x, y, z);
+        }
+    }
+
+    public static Vector2 CubeToOffset(Vector3 offsetCoord, HexOrientation orientation)
+    {
+        return CubeToOffset((int)offsetCoord.x, (int)offsetCoord.y, (int)offsetCoord.z, orientation);
+    }
+
+    public static Vector2 CubeToOffsetPointy(int x, int y, int z)
+    {
+        Vector2 offsetCoordinates = new Vector2(x + (y - (y & 1)) / 2, y);
+        return offsetCoordinates;
+    }
+
+    public static Vector2 CubeToOffsetFlat(int x, int y, int z)
+    {
+        Vector2 offsetCoordinates = new Vector2(x, y + (x - (x & 1)) / 2);
+        return offsetCoordinates;
+    }
+
     public static Vector2 CoordinateToOffset(float x, float z, float hexSize, HexOrientation orientation)
     {
         return CubeToOffset(AxialToCube(CoordinateToAxial(x, z, hexSize, orientation)), orientation);
