@@ -91,6 +91,35 @@ public class HexMetrics : MonoBehaviour
         return offsetCoordinates;
     }
 
+    private static Vector3 CubeRound(Vector3 frac)
+    {
+        Vector3 roundedCoordinates = new Vector3();
+        int rx = Mathf.RoundToInt(frac.x);
+        int ry = Mathf.RoundToInt(frac.y);
+        int rz = Mathf.RoundToInt(frac.z);
+        float xDiff = Mathf.Abs(rx - frac.x);
+        float yDiff = Mathf.Abs(ry - frac.y);
+        float zDiff = Mathf.Abs(rz - frac.z);
+
+        if (xDiff > yDiff && xDiff > zDiff)
+        {
+            rx = -ry - rz;
+        }
+        else if (yDiff > zDiff)
+        {
+            ry = -rx - rz;
+        }
+        else
+        {
+            rz = -rx - ry;
+        }
+
+        roundedCoordinates.x = rx;
+        roundedCoordinates.y = ry;
+        roundedCoordinates.z = rz;
+        return roundedCoordinates;
+    }
+
     public static Vector2 CoordinateToOffset(float x, float z, float hexSize, HexOrientation orientation)
     {
         return CubeToOffset(AxialToCube(CoordinateToAxial(x, z, hexSize, orientation)), orientation);
