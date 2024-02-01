@@ -135,7 +135,17 @@ public class HexMetrics : MonoBehaviour
         return roundedCoordinates;
     }
 
-    
+    public static Vector2 CoordinateToAxial(float x, float z, float hexSize, HexOrientation orientation)
+    {
+        if (orientation == HexOrientation.PointyTop)
+        {
+            return CoordinateToPointyAxial(x, z, hexSize);
+        }
+        else
+        {
+            return CoordinateToFlatAxial(x, z, hexSize);
+        }
+    }
 
     public static Vector2 CoordinateToPointyAxial(float x, float z, float hexSize)
     {
