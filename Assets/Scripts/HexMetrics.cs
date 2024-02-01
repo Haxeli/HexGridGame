@@ -135,6 +135,11 @@ public class HexMetrics : MonoBehaviour
         return roundedCoordinates;
     }
 
+    public static Vector2 AxialRound(Vector2 coordinates)
+    {
+        return CubeToAxial(CubeRound(AxialToCube(coordinates.x, coordinates.y)));
+    }
+
     public static Vector2 CoordinateToAxial(float x, float z, float hexSize, HexOrientation orientation)
     {
         if (orientation == HexOrientation.PointyTop)
@@ -150,11 +155,10 @@ public class HexMetrics : MonoBehaviour
     public static Vector2 CoordinateToPointyAxial(float x, float z, float hexSize)
     {
         Vector2 pointyHexCoordinates = new Vector2();
-        pointyHexCoordinates.x = (Mathf.Sqrt(3) / 3 * - 1f / 3 * z / hexSize;
+        pointyHexCoordinates.x = (Mathf.Sqrt(3) / 3 * x - 1f / 3 * z) / hexSize;
         pointyHexCoordinates.y = (2f / 3 * z) / hexSize;
         return AxialRound(pointyHexCoordinates);
     }
-
 
     public static Vector2 CoordinateToFlatAxial(float x, float z, float hexSize)
     {
