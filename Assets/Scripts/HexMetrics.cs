@@ -91,6 +91,21 @@ public class HexMetrics : MonoBehaviour
         return offsetCoordinates;
     }
 
+    public static Vector2 CubeToAxial(int q, int r, int s)
+    {
+        return new Vector2(q, r);
+    }
+
+    public static Vector2 CubeToAxial(float q, float r, float s)
+    {
+        return new Vector2(q, r);
+    }
+
+    public static Vector2 CubeToAxial(Vector3 cube)
+    {
+        return new Vector2(cube.x, cube.y);
+    }
+
     private static Vector3 CubeRound(Vector3 frac)
     {
         Vector3 roundedCoordinates = new Vector3();
@@ -120,6 +135,25 @@ public class HexMetrics : MonoBehaviour
         return roundedCoordinates;
     }
 
+    
+
+    public static Vector2 CoordinateToPointyAxial(float x, float z, float hexSize)
+    {
+        Vector2 pointyHexCoordinates = new Vector2();
+        pointyHexCoordinates.x = (Mathf.Sqrt(3) / 3 * - 1f / 3 * z / hexSize;
+        pointyHexCoordinates.y = (2f / 3 * z) / hexSize;
+        return AxialRound(pointyHexCoordinates);
+    }
+
+
+    public static Vector2 CoordinateToFlatAxial(float x, float z, float hexSize)
+    {
+        Vector2 flatHexCoordinates = new Vector2();
+        flatHexCoordinates.x = (2f / 3 * x) / hexSize;
+        flatHexCoordinates.y = (-1f / 3 * x + Mathf.Sqrt(3) / 3 * z) / hexSize;
+        return AxialRound(flatHexCoordinates);
+    }
+
     public static Vector2 CoordinateToOffset(float x, float z, float hexSize, HexOrientation orientation)
     {
         return CubeToOffset(AxialToCube(CoordinateToAxial(x, z, hexSize, orientation)), orientation);
@@ -142,12 +176,31 @@ public class HexMetrics : MonoBehaviour
         }
     }
 
-    public static Vector3 AxialToCube(Vector2Int axial)
+    public static Vector2 OffsetToAxial(int x, int z, HexOrientation orientation)
     {
-        float x = axial.x;
-        float z = axial.y;
-        float y = -x - z;
-        return new Vector3(x, z, y);
+        if (orientation == HexOrientation.PointyTop)
+        {
+            return OffsetToAxialPointy(x, z);
+        }
+        else
+        {
+            return OffsetToAxialFlat(x, z);
+        }
+    }
+
+    public static Vector3 AxialToCube(int q, int r)
+    {
+        return new Vector3(q, r, -q - r);
+    }
+
+    public static Vector3 AxialToCube(float q, float r)
+    {
+        return new Vector3(q, r, -q - r);
+    }
+
+    public static Vector3 AxialToCube(Vector2 axialCoord)
+    {
+        return AxialToCube(axialCoord.x, axialCoord.y);
     }
 
     public static Vector2Int OffsetToAxialFlat(int col, int row)
